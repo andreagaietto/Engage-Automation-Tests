@@ -1,4 +1,5 @@
 import unittest
+import configparser
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
@@ -6,11 +7,14 @@ class Specimen_Select_Screen(unittest.TestCase):
 
     def setUp(self):
         #setting up by performing previous tests to get to correct point
-        self.databaseName = "" #TODO: replace with settings
-        self.username = "" #TODO: replace with settings
-        self.password = "" #TODO: replace with settings
+        config = configparser.SafeConfigParser()
+        config.read('config.ini')
+        self.databaseName = config.get('DEFAULT', 'databaseName')
+        self.url = config.get('DEFAULT', 'url')
+        self.username = config.get('DEFAULT', 'username')
+        self.password = config.get('DEFAULT', 'password')
         self.driver = webdriver.Chrome()
-        self.driver.get("https://engage-uat.bsisystems.com/")
+        self.driver.get(self.url)
         database = self.driver.find_element_by_id('id_database')
         database.clear()
         database.send_keys(self.databaseName)
@@ -51,7 +55,7 @@ class Specimen_Select_Screen(unittest.TestCase):
         driver.implicitly_wait(3)
         driver.find_element_by_css_selector("form input[name^='vial.bsi_id:']").click()
         driver.implicitly_wait(3)
-        driver.find_element_by_class_name("fa-times").click()
+        driver.find_element_by_class_name("hidden-xs").click()
         cart = driver.find_element_by_class_name("cart-total")
         assert "0" in cart.text
 
