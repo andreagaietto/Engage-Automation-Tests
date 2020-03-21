@@ -7,7 +7,7 @@ class EngageDatabase(unittest.TestCase):
 
     def setUp(self):
         #navigating to correct website and starting up webdriver
-        config = configparser.SafeConfigParser()
+        config = configparser.ConfigParser()
         config.read('config.ini')
         self.databaseName = config.get('DEFAULT', 'databaseName')
         self.url = config.get('DEFAULT', 'url')

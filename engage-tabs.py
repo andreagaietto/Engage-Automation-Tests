@@ -7,7 +7,7 @@ class EngageTabs(unittest.TestCase):
     
     def setUp(self):
         #setting up by performing previous tests
-        config = configparser.SafeConfigParser()
+        config = configparser.ConfigParser()
         config.read('config.ini')
         self.databaseName = config.get('DEFAULT', 'databaseName')
         self.url = config.get('DEFAULT', 'url')
