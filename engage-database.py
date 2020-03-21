@@ -1,4 +1,5 @@
 import unittest
+import configparser
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
@@ -6,9 +7,12 @@ class EngageDatabase(unittest.TestCase):
 
     def setUp(self):
         #navigating to correct website and starting up webdriver
-        self.databaseName = "" #TODO: replace with settings
+        config = configparser.SafeConfigParser()
+        config.read('config.ini')
+        self.databaseName = config.get('DEFAULT', 'databaseName')
+        self.url = config.get('DEFAULT', 'url')
         self.driver = webdriver.Chrome()
-        self.driver.get("https://engage-uat.bsisystems.com/")
+        self.driver.get(self.url)
         print("setup")
 
     def test_access_engage(self):
