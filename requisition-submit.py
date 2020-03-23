@@ -3,9 +3,9 @@ import configparser
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-class creating_requisition(unittest.TestCase): 
+class requisition_submit(unittest.TestCase):
 
-    def setUp(self):
+  def setUp(self):
         #setting up by performing previous tests to get to correct point
         config = configparser.ConfigParser()
         config.read('config.ini')
@@ -33,15 +33,29 @@ class creating_requisition(unittest.TestCase):
         self.driver.implicitly_wait(5)
         self.driver.find_element_by_class_name("fa-check").click()
         self.driver.find_element_by_class_name("fa-shopping-cart").click()
+        self.driver.implicitly_wait(5)
+        self.driver.find_element_by_partial_link_text("Create Requisition").click()
+        self.driver.implicitly_wait(5)
 
-    def test_creating_requisition(self):
-        #selecting create requisition button
+  def test_add_info_to_requisition(self):
+        #adding all required information into the requisition fields to test submit functionality
         driver = self.driver
-        driver.find_element_by_class_name("fa-plus").click()
-        content = driver.find_element_by_css_selector('.page-header h2')
-        assert "New Requisition" in content.text
+        #driver.find_element_by_id("select2-result-label-11").click()
+        #driver.find_element_by_id("select2-chosen-2").click()
+        #driver.find_element_by_id("select2-result-label-12").click()
+        #driver.find_element_by_id("id_requisition.expect_completion_date").click()
+        #driver.find_element_by_class_name("new day")
+        
+        
+        driver.implicitly_wait(5)
 
-    def tearDown(self):
+
+      
+
+
+
+
+  def tearDown(self):
         #closing down
         self.driver.quit()
         print("close")

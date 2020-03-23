@@ -7,7 +7,7 @@ class Specimen_Select_Screen(unittest.TestCase):
 
     def setUp(self):
         #setting up by performing previous tests to get to correct point
-        config = configparser.SafeConfigParser()
+        config = configparser.ConfigParser()
         config.read('config.ini')
         self.databaseName = config.get('DEFAULT', 'databaseName')
         self.url = config.get('DEFAULT', 'url')
@@ -65,7 +65,7 @@ class Specimen_Select_Screen(unittest.TestCase):
 
 def tearDown(self):
         #closing down
-        self.driver.close()
+        self.driver.quit()
         print("close")
 
 if __name__ == "__main__":

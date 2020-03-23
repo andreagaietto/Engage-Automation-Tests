@@ -73,7 +73,7 @@ class EngageTabs(unittest.TestCase):
 
     def tearDown(self):
         #closing down
-        self.driver.close()
+        self.driver.quit()
         print("close")
 
 if __name__ == "__main__":
