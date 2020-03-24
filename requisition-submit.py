@@ -33,9 +33,9 @@ class requisition_submit(unittest.TestCase):
         self.driver.implicitly_wait(5)
         self.driver.find_element_by_class_name("fa-check").click()
         self.driver.find_element_by_class_name("fa-shopping-cart").click()
-        self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(7)
         self.driver.find_element_by_partial_link_text("Create Requisition").click()
-        self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(7)
 
   def test_add_info_to_requisition(self):
         #adding all required information into the requisition fields to test submit functionality
@@ -45,15 +45,17 @@ class requisition_submit(unittest.TestCase):
         #driver.find_element_by_id("select2-result-label-12").click()
         #driver.find_element_by_id("id_requisition.expect_completion_date").click()
         #driver.find_element_by_class_name("new day")
-        
-        
+        driver.find_element_by_css_selector("#s2id_id_req_repository\.repos_id .select2-choice").click()
+        subContainerClass = "#select2-drop:not([style*='display: none'])"
+        repository = driver.find_element_by_css_selector(subContainerClass + " .select2-input")    
+        repository.send_keys("Kryosphere")
+        selectItem = driver.find_element_by_css_selector(subContainerClass + " .select2-results li.select2-result-selectable")
+        selectItem.click()
+
         driver.implicitly_wait(5)
 
 
       
-
-
-
 
   def tearDown(self):
         #closing down
