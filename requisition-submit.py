@@ -28,13 +28,14 @@ class requisition_submit(unittest.TestCase):
         password.send_keys(Keys.RETURN)
         specimen = self.driver.find_element_by_link_text('Specimens')
         specimen.send_keys(Keys.RETURN)
-        self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(10)
         self.driver.find_element_by_css_selector("form input[name^='vial.bsi_id:']").click()
         self.driver.implicitly_wait(5)
         self.driver.find_element_by_class_name("fa-check").click()
         self.driver.find_element_by_class_name("fa-shopping-cart").click()
         self.driver.implicitly_wait(7)
-        self.driver.find_element_by_partial_link_text("Create Requisition").click()
+        requisition = self.driver.find_element_by_partial_link_text("Create Requisition")
+        requisition.send_keys(Keys.RETURN)
         self.driver.implicitly_wait(7)
 
   def test_add_info_to_requisition(self):
@@ -51,7 +52,7 @@ class requisition_submit(unittest.TestCase):
         repository.send_keys("Kryosphere")
         selectItem = driver.find_element_by_css_selector(subContainerClass + " .select2-results li.select2-result-selectable")
         selectItem.click()
-
+        driver.find_element_by_link_text("Submit Requisition")
         driver.implicitly_wait(5)
 
 
