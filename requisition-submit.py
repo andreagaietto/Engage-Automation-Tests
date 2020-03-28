@@ -30,29 +30,21 @@ class requisition_submit(unittest.TestCase):
         specimen.send_keys(Keys.RETURN)
         self.driver.implicitly_wait(10)
         self.driver.find_element_by_css_selector("form input[name^='vial.bsi_id:']").click()
-        self.driver.implicitly_wait(5)
         self.driver.find_element_by_class_name("fa-check").click()
         self.driver.find_element_by_class_name("fa-shopping-cart").click()
-        self.driver.implicitly_wait(7)
-        requisition = self.driver.find_element_by_partial_link_text("Create Requisition")
-        requisition.send_keys(Keys.RETURN)
-        self.driver.implicitly_wait(7)
+        self.driver.get(self.driver.find_element_by_css_selector(".page-header .action-btns .btn:nth-child(2)").get_attribute("href"))
+        self.driver.implicitly_wait(5)
 
   def test_add_info_to_requisition(self):
         #adding all required information into the requisition fields to test submit functionality
         driver = self.driver
-        #driver.find_element_by_id("select2-result-label-11").click()
-        #driver.find_element_by_id("select2-chosen-2").click()
-        #driver.find_element_by_id("select2-result-label-12").click()
-        #driver.find_element_by_id("id_requisition.expect_completion_date").click()
-        #driver.find_element_by_class_name("new day")
         driver.find_element_by_css_selector("#s2id_id_req_repository\.repos_id .select2-choice").click()
         subContainerClass = "#select2-drop:not([style*='display: none'])"
         repository = driver.find_element_by_css_selector(subContainerClass + " .select2-input")    
         repository.send_keys("Kryosphere")
         selectItem = driver.find_element_by_css_selector(subContainerClass + " .select2-results li.select2-result-selectable")
         selectItem.click()
-        driver.find_element_by_link_text("Submit Requisition")
+        driver.find_element_by_css_selector(".form-actions .btn:nth-child(1)").click()
         driver.implicitly_wait(5)
 
 
